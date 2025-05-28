@@ -4,10 +4,12 @@
  */
 public with sharing class TwilioService {
     // Constants for Twilio API
-    private static final String ACCOUNT_SID = ''; // TODO: Add your Twilio Account SID
-    private static final String AUTH_TOKEN = ''; // TODO: Add your Twilio Auth Token
-    private static final String DEFAULT_FROM_NUMBER = ''; // TODO: Add your default sender number
-    private static final String TWILIO_API_URL = 'https://api.twilio.com/2010-04-01/Accounts/' + ACCOUNT_SID;
+
+    
+    private static final String DEFAULT_FROM_NUMBER = '+18556302145'; // TODO: Add your default sender number
+    private static final String TWILIO_NAMED_CREDENTIAL = 'callout:TwilioNamedCredential';
+    private static final String TWILIO_API_URL = TWILIO_NAMED_CREDENTIAL;
+
 
 
     /**
@@ -57,12 +59,7 @@ public with sharing class TwilioService {
         request.setEndpoint(TWILIO_API_URL + endpoint);
         request.setMethod(method);
         
-        // Add Basic Auth header for Twilio authentication
-        // Twilio uses HTTP Basic Auth with Account SID as username and Auth Token as password
-        String authString = ACCOUNT_SID + ':' + AUTH_TOKEN;
-        Blob headerValue = Blob.valueOf(authString);
-        String authorizationHeader = 'Basic ' + EncodingUtil.base64Encode(headerValue);
-        request.setHeader('Authorization', authorizationHeader);
+
         
         // Set timeout to avoid long-running callouts
         request.setTimeout(20000); // 20 seconds timeout
