@@ -39,13 +39,13 @@ private class TwilioRestApiTest {
         
         // TODO: Verify results
         // - Verify response XML is not null
-        System.assertNotEquals(null, result);
+        System.assertNotEquals(null, result,'Expected a null result here');
     
         //System.Assert.areEqual(
             //'<Response></Response>',);
         // - Verify response contains expected TwiML elements
-        System.assert(result.contains('<Response>'));
-        System.assert(result.contains('</Response>'));
+        System.assert(result.contains('<Response>'),'Expected <Response> element in response');
+        System.Assert(result.contains('</Response>'),'Expected </Response> element in response');
     }
     
     /**
@@ -90,10 +90,10 @@ private class TwilioRestApiTest {
         // TODO: Verify results
         // - Verify response XML is not null
         System.debug('**DEBUG Result**: ' + result);
-        System.assertNotEquals(null, result);
         // - Verify response contains expected TwiML elements
-        System.Assert(result.contains('<Response>'));
-        System.Assert(result.contains('</Response>'));
+        System.assertNotEquals(null, result,'Expected a null result here');
+        System.Assert(result.contains('<Response>'), 'Expected <Response> element in response');
+        System.Assert(result.contains('</Response>'),'Expected </Response> element in response');
 
         //System.Assert(result.contains('<Media>'), 'Oops no media to display');
     }
@@ -141,9 +141,9 @@ private class TwilioRestApiTest {
         // TODO: Verify results
         // - Verify response XML is not null
         // - Verify response contains expected TwiML elements
-        System.assertNotEquals(null, result);
-        System.Assert(result.contains('<Response>'));
-        System.Assert(result.contains('</Response>'));
+        System.assertNotEquals(null, result,'Expected a null result here');
+        System.Assert(result.contains('<Response>'), 'Expected <Response> element in response');
+        System.Assert(result.contains('</Response>'),'Expected </Response> element in response');
     }
     
     /**
@@ -194,8 +194,8 @@ private class TwilioRestApiTest {
         // TODO: Verify results
         // - Verify response XML is not null
         // - Verify response contains expected TwiML elements
-        System.assertNotEquals(null, result);
-        System.Assert(result.contains('<Response>'));
-        System.Assert(result.contains('</Response>'));
+        System.assertNotEquals(null, result,'Expected a null result here');
+        System.Assert(result.contains('<Response>'), 'Expected <Response> element in response');
+        System.Assert(result.contains('</Response>'),'Expected </Response> element in response');
     }
 } 

@@ -38,11 +38,11 @@ private class TwilioServiceTest {
         // - Verify that response is successful
         // - Verify status code is correct
         // - Verify response body contains expected values (sid, status, etc.)
-        System.assertEquals(true, response.success);
-        System.assertEquals(201, response.statusCode);
-        System.assertNotEquals(null, response.getBodyAsJson());
-        System.assertEquals('queued', response.getBodyAsJson().get('status'));
-        System.assertEquals('Test message', response.getBodyAsJson().get('body'));
+        System.assertEquals(true, response.success,'Very nice...response was successful');
+        System.assertEquals(201, response.statusCode,'Also, nice....response was 201');
+        System.assertNotEquals(null, response.getBodyAsJson(),'Expected the body to contain a JSON object');
+        System.assertEquals('queued', response.getBodyAsJson().get('status'),'Expected the status to be "queued"');
+        System.assertEquals('Test message', response.getBodyAsJson().get('body'),'Expected the body to contain the message "Test message"');
     }
     
     /**
@@ -73,10 +73,10 @@ private class TwilioServiceTest {
         // - Verify that response is not successful
         // - Verify error status code is correct
         // - Verify error message is extracted correctly
-        System.assertNotEquals(null, response, 'Expected something dude!');
+        System.assertNotEquals(null, response, 'Expected something not null dude!');
         System.assertEquals(false, response.success, 'Expected success to be false');
         System.assertEquals(500, response.statusCode, 'Expected status code to be 500');
-        System.assertEquals('Invalid Phone', response.getErrorMessage());
+        System.assertEquals('Invalid Phone', response.getErrorMessage(),'Expected error message to be "Invalid Phone"');
     }
     
     /**
@@ -104,9 +104,9 @@ private class TwilioServiceTest {
         // - Verify status code is correct
         // - Verify response body contains expected messages data
         System.assertEquals(true, result.success, 'Very nice...great success');
-        System.AssertEquals(200, result.statusCode, 'Dude, you got an error');
+        System.assertEquals(200, result.statusCode, 'Error...expected a 200 return code');
         
-        System.AssertNotEquals(null, result.getBodyAsJson(), 'Very nice...great success');
+        System.assertNotEquals(null, result.getBodyAsJson(), 'Contained no JSON object');
     }
     
     /**
@@ -124,8 +124,10 @@ private class TwilioServiceTest {
         // TODO: Execute the test with null limit
         // - Call TwilioService.getMessages() method with null
         TwilioResponse nullLimitresult = TwilioService.getMessages(null);
-        System.assertEquals(true, nullLimitResult.success);
-        System.assert(nullLimitResult.body.contains('Null Jason Towers'));
+        System.assertEquals(true, nullLimitResult.success,'Nice, it was a success');
+        System.assert(nullLimitResult.body.contains('Null Jason Towers'),'Nice, it contained the message we were looking for');
+        
+        // TODO: Execute the test with 0 limit');
         
         // TODO: Execute the test with negative limit
         // - Call TwilioService.getMessages() method with a negative number
@@ -134,9 +136,11 @@ private class TwilioServiceTest {
         TwilioResponse negativeLimitResult = TwilioService.getMessages(-1);
         // TODO: Verify results
         // - Verify that both responses are successful
-        System.assertEquals(true, negativeLimitResult.success);
+        System.assertEquals(true, negativeLimitResult.success,'Nice, it was a success');
         // - Verify that the service handles these edge cases correctly
-        System.assert(negativeLimitResult.body.contains('Negative Jazon Toyers'));
+        System.assert(negativeLimitResult.body.contains('Negative Jazon Toyers'),'Nice, it contained the message we were looking for');
+        
+        // TODO:);
     }
     
     /**
@@ -156,7 +160,7 @@ private class TwilioServiceTest {
         Test.stopTest();
 
         System.assertEquals(false, result.success, 'Should be unsuccessful');
-        System.assertEquals(500, result.statusCode);
+        System.assertEquals(500, result.statusCode,'Should be a 500 status code');
         System.debug('Result body: ' + result.body);
         System.assert(result.body.contains('TwilioCalloutMock: Exception thrown for test.'), 'Expected simulated exception message');
     }
